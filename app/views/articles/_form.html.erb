@@ -1,0 +1,36 @@
+<% if @article.errors.any? %>
+    <h2> Following error occurs. Please fix them </h2>
+    <ul>
+        <% @article.errors.full_messages.each do |msg| %>
+            <li> <%= msg %> </li>
+        <% end %>
+    </ul>
+<% end %>
+
+<div class="row">
+    <div class="col-xs-12">
+
+    <%= form_for(@article, :html => {class: "form-horizontal", role: "form"}) do |f| %>
+        <div class="form-group">
+            <%= f.label :title, class: "col-xs-2 control-label" %>
+            <div class="col-xs-8">        
+                <%= f.text_field :title, class:"form-control", placeholder:"Enter article title", autofocus: true %>
+            </div>
+        </div>
+    
+        <div class="form-group">
+            <%= f.label :description, class:"col-xs-2 control-label" %>
+            <div class="col-xs-8">
+                <%= f.text_area :description, rows: 10, class:"form-control", placeholder:"Enter Description of article", autofocus:true %>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-sm-offset-2 col-sm-10">
+                <%= f.submit class: "btn btn-primary col-xs-2" %>
+                <%= link_to "Back to Articles Listing", articles_path, class:"btn btn-danger space col-xs-2" %>
+            </div>
+        </div>
+    </div>
+</div>    
+<% end %>
+
